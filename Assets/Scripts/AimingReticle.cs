@@ -1,0 +1,55 @@
+
+using UnityEngine;
+
+public class AimingReticle : MonoBehaviour
+{
+    [SerializeField]
+    private Rigidbody _spaceShip;
+
+    [SerializeField]
+    private int _steps = 10;
+
+    [SerializeField]
+    private Transform _endReticle;
+
+    [SerializeField]
+    private LineRenderer _lineRenderer;
+
+    private void Start()
+    {
+        _lineRenderer.positionCount = _steps;
+    }
+
+    private void FixedUpdate()
+    {
+        UpdateReticle();
+    }
+
+    private void UpdateReticle()
+    { 
+        float distancePerStep = _spaceShip.linearVelocity.magnitude / (float)_steps;
+
+        Vector3 lastPosition = this.transform.position;
+
+        Vector3 lastForward = _spaceShip.transform.forward;
+
+        Quaternion convertedAngular = Quaternion.Euler(_spaceShip.angularVelocity);
+
+        for (int i = 0; i < _steps; i++)
+        {
+
+            Vector3 nextForward = convertedAngular * lastForward;
+
+            Vector3 nextPosition = lastPosition + ( nextForward * distancePerStep );
+
+            //Debug.DrawLine(lastPosition, nextPosition, Color.red, 0.1f);
+
+            _lineRenderer.SetPosition(i, lastPosition);
+
+            lastPosition = nextPosition;
+            lastForward = nextForward;
+        }
+
+        _endReticle.position= lastPosition;
+    }
+}
