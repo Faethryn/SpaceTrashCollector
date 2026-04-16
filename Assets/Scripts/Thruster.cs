@@ -17,6 +17,12 @@ public class Thruster : MonoBehaviour
     [SerializeField]
     private Rigidbody _spaceShipBody;
 
+    [SerializeField]
+    private ParticleSystem _fireSystem;
+
+    [SerializeField]
+    private Vector2 _emissionRateRange = new Vector2(0f, 80f);
+
     private IASpaceShip _shipActions;
 
     private InputAction _thrustRight;
@@ -107,11 +113,22 @@ public class Thruster : MonoBehaviour
                 break;
         }
 
+        UpdateParticleSystem(inputFloat);
+
         float targetForce = MathUtilHelpers.RemapF(0f, 1f, 0f, _thrusterForce, inputFloat);
 
         Vector3 addedForce = this.transform.forward * targetForce * Time.fixedDeltaTime;
 
         _spaceShipBody.AddForceAtPosition(addedForce, this.transform.position);
+    }
+
+    private void UpdateParticleSystem(float lerpFactor)
+    {
+        float amountOfEmission = MathUtilHelpers.RemapF(0, 1, _emissionRateRange.x, _emissionRateRange.y, lerpFactor);
+
+        var emissionModule = _fireSystem.emission;
+
+        emissionModule.rateOverTime = amountOfEmission;
     }
 }
 
