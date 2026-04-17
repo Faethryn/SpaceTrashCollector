@@ -1,6 +1,7 @@
 using MathUtil;
 using UnityEngine;
 
+
 public class CameraSetup : MonoBehaviour
 {
     [SerializeField]
@@ -22,6 +23,27 @@ public class CameraSetup : MonoBehaviour
     private Vector2 _dampingDistance = new Vector2(0.05f, 0.5f);
 
     private float _currentSpeed = 10.0f;
+
+    private Camera _ownCam;
+
+    private void OnEnable()
+    {
+        if (_ownCam == null)
+        {
+            _ownCam = _cameraHolder.GetComponentInChildren<Camera>();
+        }
+        _ownCam.enabled = true;
+    }
+
+    private void OnDisable()
+    {
+        if (_ownCam == null)
+        {
+            _ownCam = _cameraHolder.GetComponentInChildren<Camera>();
+        }
+
+        _ownCam.enabled = false;
+    }
 
     private void FixedUpdate()
     {

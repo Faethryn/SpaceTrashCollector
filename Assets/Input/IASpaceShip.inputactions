@@ -41,6 +41,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "ChangePerspective",
+                    "type": "Button",
+                    "id": "a9bf2674-8964-4e93-9c16-0548129f93b7",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -219,6 +228,28 @@
                     "action": "OrientRight",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "98b50b36-30dc-4019-ba2c-c83f8c409241",
+                    "path": "<Gamepad>/dpad/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Controller",
+                    "action": "ChangePerspective",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2669fe80-67ad-43de-8769-3de115e735b5",
+                    "path": "<Keyboard>/rightShift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard",
+                    "action": "ChangePerspective",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }

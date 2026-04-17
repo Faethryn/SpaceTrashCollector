@@ -20,7 +20,7 @@ public class AimingReticle : MonoBehaviour
         _lineRenderer.positionCount = _steps;
     }
 
-    private void FixedUpdate()
+    private void LateUpdate()
     {
         UpdateReticle();
     }
@@ -33,7 +33,7 @@ public class AimingReticle : MonoBehaviour
 
         Vector3 lastForward = _spaceShip.transform.forward;
 
-        Quaternion convertedAngular = Quaternion.Euler(_spaceShip.angularVelocity);
+        Quaternion convertedAngular = Quaternion.Euler(_spaceShip.angularVelocity * _spaceShip.angularVelocity.magnitude);
 
         for (int i = 0; i < _steps; i++)
         {
@@ -50,6 +50,11 @@ public class AimingReticle : MonoBehaviour
             lastForward = nextForward;
         }
 
-        _endReticle.position= lastPosition;
+        Vector3 endrecticleForward = Vector3.Normalize(lastPosition - this.transform.position);
+
+        if(endrecticleForward.magnitude > 0.1f)
+        {
+            _endReticle.forward = endrecticleForward;
+        }
     }
 }

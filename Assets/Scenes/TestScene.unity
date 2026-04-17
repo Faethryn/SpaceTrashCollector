@@ -158,10 +158,10 @@ MonoBehaviour:
   - {fileID: 353849080949327854, guid: fc3a9afdbdc352c4fbd41a1f3422b725, type: 3}
   - {fileID: 918604860345987010, guid: 525f4fa6156625240b02f0c1c693c90f, type: 3}
   _origin: {x: 0, y: 0, z: 0}
-  _size: {x: 10000, y: 10000, z: 10000}
+  _size: {x: 5000, y: 5000, z: 5000}
   _spawnCount: 2000
-  _minimumScales: {x: 1, y: 1, z: 1}
-  _maximumScales: {x: 50, y: 50, z: 50}
+  _minimumScales: {x: 10, y: 10, z: 10}
+  _maximumScales: {x: 100, y: 100, z: 100}
 --- !u!4 &969463823
 Transform:
   m_ObjectHideFlags: 0
@@ -531,6 +531,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 7559045834411900683, guid: fbbc50ff4976781408af61942cfa21cf, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7776586313304572574, guid: fbbc50ff4976781408af61942cfa21cf, type: 3}
       propertyPath: m_LocalScale.x
       value: 114.75351
@@ -578,6 +582,10 @@ PrefabInstance:
     - target: {fileID: 9147230217722785533, guid: fbbc50ff4976781408af61942cfa21cf, type: 3}
       propertyPath: m_Layer
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 9223054847616527067, guid: fbbc50ff4976781408af61942cfa21cf, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5756318157384730029, guid: fbbc50ff4976781408af61942cfa21cf, type: 3}

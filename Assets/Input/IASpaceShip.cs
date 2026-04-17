@@ -127,6 +127,15 @@ public partial class @IASpaceShip: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""ChangePerspective"",
+                    ""type"": ""Button"",
+                    ""id"": ""a9bf2674-8964-4e93-9c16-0548129f93b7"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -305,6 +314,28 @@ public partial class @IASpaceShip: IInputActionCollection2, IDisposable
                     ""action"": ""OrientRight"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""98b50b36-30dc-4019-ba2c-c83f8c409241"",
+                    ""path"": ""<Gamepad>/dpad/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Controller"",
+                    ""action"": ""ChangePerspective"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2669fe80-67ad-43de-8769-3de115e735b5"",
+                    ""path"": ""<Keyboard>/rightShift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard"",
+                    ""action"": ""ChangePerspective"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -345,6 +376,7 @@ public partial class @IASpaceShip: IInputActionCollection2, IDisposable
         m_SpaceShip_ThrustLeft = m_SpaceShip.FindAction("ThrustLeft", throwIfNotFound: true);
         m_SpaceShip_OrientLeft = m_SpaceShip.FindAction("OrientLeft", throwIfNotFound: true);
         m_SpaceShip_OrientRight = m_SpaceShip.FindAction("OrientRight", throwIfNotFound: true);
+        m_SpaceShip_ChangePerspective = m_SpaceShip.FindAction("ChangePerspective", throwIfNotFound: true);
     }
 
     ~@IASpaceShip()
@@ -429,6 +461,7 @@ public partial class @IASpaceShip: IInputActionCollection2, IDisposable
     private readonly InputAction m_SpaceShip_ThrustLeft;
     private readonly InputAction m_SpaceShip_OrientLeft;
     private readonly InputAction m_SpaceShip_OrientRight;
+    private readonly InputAction m_SpaceShip_ChangePerspective;
     /// <summary>
     /// Provides access to input actions defined in input action map "SpaceShip".
     /// </summary>
@@ -456,6 +489,10 @@ public partial class @IASpaceShip: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "SpaceShip/OrientRight".
         /// </summary>
         public InputAction @OrientRight => m_Wrapper.m_SpaceShip_OrientRight;
+        /// <summary>
+        /// Provides access to the underlying input action "SpaceShip/ChangePerspective".
+        /// </summary>
+        public InputAction @ChangePerspective => m_Wrapper.m_SpaceShip_ChangePerspective;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -494,6 +531,9 @@ public partial class @IASpaceShip: IInputActionCollection2, IDisposable
             @OrientRight.started += instance.OnOrientRight;
             @OrientRight.performed += instance.OnOrientRight;
             @OrientRight.canceled += instance.OnOrientRight;
+            @ChangePerspective.started += instance.OnChangePerspective;
+            @ChangePerspective.performed += instance.OnChangePerspective;
+            @ChangePerspective.canceled += instance.OnChangePerspective;
         }
 
         /// <summary>
@@ -517,6 +557,9 @@ public partial class @IASpaceShip: IInputActionCollection2, IDisposable
             @OrientRight.started -= instance.OnOrientRight;
             @OrientRight.performed -= instance.OnOrientRight;
             @OrientRight.canceled -= instance.OnOrientRight;
+            @ChangePerspective.started -= instance.OnChangePerspective;
+            @ChangePerspective.performed -= instance.OnChangePerspective;
+            @ChangePerspective.canceled -= instance.OnChangePerspective;
         }
 
         /// <summary>
@@ -611,5 +654,12 @@ public partial class @IASpaceShip: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnOrientRight(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "ChangePerspective" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnChangePerspective(InputAction.CallbackContext context);
     }
 }
