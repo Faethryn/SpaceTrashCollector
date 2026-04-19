@@ -164,7 +164,7 @@ public partial class @IASpaceShip: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""b0e19ac9-c389-4800-8c4d-f4fa6f03fa77"",
-                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Controller"",
