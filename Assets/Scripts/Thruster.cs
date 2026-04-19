@@ -107,6 +107,11 @@ public class Thruster : MonoBehaviour
 
     private void AddThrustForce()
     {
+        if(_fuelManager.Fuel <= 0)
+        {
+            return;
+        }
+
         float inputFloat = 0f;
 
         switch(_thrusterSide)

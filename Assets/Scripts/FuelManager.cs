@@ -6,6 +6,11 @@ public class FuelManager : MonoBehaviour
     [SerializeField]
     private float _fuel = 500f;
 
+    public float Fuel
+    {
+        get { return _fuel; }
+    }
+
     private float _maxFuel = 500f;
 
     [SerializeField]
