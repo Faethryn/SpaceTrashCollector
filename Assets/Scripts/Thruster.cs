@@ -23,6 +23,12 @@ public class Thruster : MonoBehaviour
     [SerializeField]
     private Vector2 _emissionRateRange = new Vector2(0f, 80f);
 
+    [SerializeField]
+    private FuelManager _fuelManager;
+
+    [SerializeField]
+    private float _fuelConsumptionPerThrust = 1f;
+
     private IASpaceShip _shipActions;
 
     private InputAction _thrustRight;
@@ -113,6 +119,8 @@ public class Thruster : MonoBehaviour
                 break;
         }
 
+        UpdateFuel(inputFloat);
+
         UpdateParticleSystem(inputFloat);
 
         float targetForce = MathUtilHelpers.RemapF(0f, 1f, 0f, _thrusterForce, inputFloat);
@@ -120,6 +128,11 @@ public class Thruster : MonoBehaviour
         Vector3 addedForce = this.transform.forward * targetForce * Time.fixedDeltaTime;
 
         _spaceShipBody.AddForceAtPosition(addedForce, this.transform.position);
+    }
+
+    private void UpdateFuel(float input)
+    {
+        _fuelManager.ThrustFuelReduction(input * _fuelConsumptionPerThrust * Time.fixedDeltaTime);
     }
 
     private void UpdateParticleSystem(float lerpFactor)

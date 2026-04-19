@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 7974927779204750123}
   - component: {fileID: 3875562308139702890}
   - component: {fileID: 5174401538601349044}
-  m_Layer: 0
+  - component: {fileID: 3307213358627919008}
+  m_Layer: 9
   m_Name: CapsuleSteroid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -142,3 +143,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &3307213358627919008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4755732573266643845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32eb7a7ed4c8d8041a950f4dd040c692, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Asteroid
+  _hitPoints: 5
+  _trashChunks: {fileID: 353849080949327854, guid: ff1051e3af7f0c74aab3c35eca4aa2a4, type: 3}
+  _amountOfSpawnedChunks: 5
+  _spawnRange: 5
