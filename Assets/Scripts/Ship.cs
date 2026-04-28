@@ -29,6 +29,9 @@ public class Ship : MonoBehaviour
     private float _fuelConsumptionPerThrust = 1f;
 
     [SerializeField]
+    private AimingReticle _aimingReticle;
+
+    [SerializeField]
     private float _addedTorqueInCombat = 100f;
 
     private IASpaceShip _shipControls;
@@ -44,6 +47,13 @@ public class Ship : MonoBehaviour
     private InputAction _perspectiveChange;
 
     private InputAction _movementModeChange;
+
+    private InputAction _shoot;
+
+    [SerializeField]
+    private float _delayBetweenShots = 1f;
+
+    private float _lastShotTime = 0f;
 
     private PerspectiveState _currentPerspective = PerspectiveState.Back;
 
@@ -77,6 +87,9 @@ public class Ship : MonoBehaviour
 
         _orientRight = _shipControls.SpaceShip.OrientRight;
         _orientRight.Enable();
+
+        _shoot = _shipControls.SpaceShip.Shoot;
+        _shoot.Enable();
     }
 
     private void OnDisable()
@@ -94,8 +107,15 @@ public class Ship : MonoBehaviour
         _orientLeft.Disable();
 
         _orientRight.Disable();
+
+        _shoot.Disable();
+
     }
 
+    private void Update()
+    {
+        ShootUpdate();
+    }
 
     private void FixedUpdate()
     {
@@ -178,6 +198,19 @@ public class Ship : MonoBehaviour
         Vector3 rollAxis = transform.forward * rollInput * _addedTorqueInCombat;
 
         _shipBody.AddTorque(rollAxis);
+    }
+
+    private void ShootUpdate()
+    {
+        if (_shoot.ReadValue<float>() > 0.1f)
+        {
+            float timeSinceLastShot = Time.time - _lastShotTime;
+            if (timeSinceLastShot >= _delayBetweenShots)
+            {
+                _lastShotTime = Time.time;
+                _aimingReticle.SpawnProjectile();
+            }
+        }
     }
 
     private void InitializeCamera()

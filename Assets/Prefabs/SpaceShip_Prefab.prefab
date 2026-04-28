@@ -274,7 +274,9 @@ MonoBehaviour:
   _rightThruster: {fileID: 2273428594564948096}
   _fuelManager: {fileID: 5679384545630133055}
   _fuelConsumptionPerThrust: 1
+  _aimingReticle: {fileID: 609921386916318571}
   _addedTorqueInCombat: 100
+  _delayBetweenShots: 1
 --- !u!1001 &1272786657172019277
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -990,6 +992,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ee02d2a5aec823d489c8348ee990c56d, type: 3}
+--- !u!114 &609921386916318571 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4019549618891004944, guid: ee02d2a5aec823d489c8348ee990c56d, type: 3}
+  m_PrefabInstance: {fileID: 4593301436401553787}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b516cc31858c28e4ebc411ea2a5d5daf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AimingReticle
 --- !u!4 &3968041620345663724 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 625999821763420567, guid: ee02d2a5aec823d489c8348ee990c56d, type: 3}
