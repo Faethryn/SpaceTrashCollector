@@ -154,9 +154,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AsteroidSpawner
   _asteroidPrefabs:
-  - {fileID: 4755732573266643845, guid: 6e0c87ef439d8594cbd25a5abc096913, type: 3}
-  - {fileID: 353849080949327854, guid: fc3a9afdbdc352c4fbd41a1f3422b725, type: 3}
-  - {fileID: 918604860345987010, guid: 525f4fa6156625240b02f0c1c693c90f, type: 3}
+  - {fileID: 5830570265330043415, guid: e3f7f53eaff5a9541b9cc59d486a5c43, type: 3}
+  - {fileID: 5773809910767994715, guid: 9a2fdb01119698441866d05b9638230e, type: 3}
+  - {fileID: 7821294530708428299, guid: bad637d26aa6cca47840510d37a2ee69, type: 3}
+  - {fileID: 3044297923742949651, guid: 1196a7a2f90b0e549968d3334eba4683, type: 3}
+  - {fileID: 9215823244798261642, guid: b7f8c62c8995d1c44903c266769b974f, type: 3}
+  - {fileID: 9204498037624989223, guid: 50a86fe49b09b924699df654fcc5f9aa, type: 3}
   _origin: {x: 0, y: 0, z: 0}
   _size: {x: 5000, y: 5000, z: 5000}
   _spawnCount: 2000
@@ -451,6 +454,10 @@ PrefabInstance:
     - target: {fileID: 609921386916318571, guid: fbbc50ff4976781408af61942cfa21cf, type: 3}
       propertyPath: _distance
       value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 1016143684673796969, guid: fbbc50ff4976781408af61942cfa21cf, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 6.3999023
       objectReference: {fileID: 0}
     - target: {fileID: 1017238238653823449, guid: fbbc50ff4976781408af61942cfa21cf, type: 3}
       propertyPath: m_Layer
