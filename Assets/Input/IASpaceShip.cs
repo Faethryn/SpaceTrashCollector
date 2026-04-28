@@ -145,6 +145,15 @@ public partial class @IASpaceShip: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MovementModeToggle"",
+                    ""type"": ""Button"",
+                    ""id"": ""603a7db3-9859-447d-9ec0-30ac93074468"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -367,6 +376,28 @@ public partial class @IASpaceShip: IInputActionCollection2, IDisposable
                     ""action"": ""Shoot"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2a01662a-ed21-4404-8792-2d753d7be7bd"",
+                    ""path"": ""<Gamepad>/dpad/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Controller"",
+                    ""action"": ""MovementModeToggle"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e77f007f-339d-4df5-926c-8edeaaad3ab4"",
+                    ""path"": ""<Keyboard>/b"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard"",
+                    ""action"": ""MovementModeToggle"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -409,6 +440,7 @@ public partial class @IASpaceShip: IInputActionCollection2, IDisposable
         m_SpaceShip_OrientRight = m_SpaceShip.FindAction("OrientRight", throwIfNotFound: true);
         m_SpaceShip_ChangePerspective = m_SpaceShip.FindAction("ChangePerspective", throwIfNotFound: true);
         m_SpaceShip_Shoot = m_SpaceShip.FindAction("Shoot", throwIfNotFound: true);
+        m_SpaceShip_MovementModeToggle = m_SpaceShip.FindAction("MovementModeToggle", throwIfNotFound: true);
     }
 
     ~@IASpaceShip()
@@ -495,6 +527,7 @@ public partial class @IASpaceShip: IInputActionCollection2, IDisposable
     private readonly InputAction m_SpaceShip_OrientRight;
     private readonly InputAction m_SpaceShip_ChangePerspective;
     private readonly InputAction m_SpaceShip_Shoot;
+    private readonly InputAction m_SpaceShip_MovementModeToggle;
     /// <summary>
     /// Provides access to input actions defined in input action map "SpaceShip".
     /// </summary>
@@ -530,6 +563,10 @@ public partial class @IASpaceShip: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "SpaceShip/Shoot".
         /// </summary>
         public InputAction @Shoot => m_Wrapper.m_SpaceShip_Shoot;
+        /// <summary>
+        /// Provides access to the underlying input action "SpaceShip/MovementModeToggle".
+        /// </summary>
+        public InputAction @MovementModeToggle => m_Wrapper.m_SpaceShip_MovementModeToggle;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -574,6 +611,9 @@ public partial class @IASpaceShip: IInputActionCollection2, IDisposable
             @Shoot.started += instance.OnShoot;
             @Shoot.performed += instance.OnShoot;
             @Shoot.canceled += instance.OnShoot;
+            @MovementModeToggle.started += instance.OnMovementModeToggle;
+            @MovementModeToggle.performed += instance.OnMovementModeToggle;
+            @MovementModeToggle.canceled += instance.OnMovementModeToggle;
         }
 
         /// <summary>
@@ -603,6 +643,9 @@ public partial class @IASpaceShip: IInputActionCollection2, IDisposable
             @Shoot.started -= instance.OnShoot;
             @Shoot.performed -= instance.OnShoot;
             @Shoot.canceled -= instance.OnShoot;
+            @MovementModeToggle.started -= instance.OnMovementModeToggle;
+            @MovementModeToggle.performed -= instance.OnMovementModeToggle;
+            @MovementModeToggle.canceled -= instance.OnMovementModeToggle;
         }
 
         /// <summary>
@@ -711,5 +754,12 @@ public partial class @IASpaceShip: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnShoot(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "MovementModeToggle" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnMovementModeToggle(InputAction.CallbackContext context);
     }
 }
