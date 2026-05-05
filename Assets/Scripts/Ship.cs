@@ -175,7 +175,7 @@ public class Ship : MonoBehaviour
         _rightThruster.AddThrustForce(inputThrustLeft);
 
         UpdateFuel(inputThrustLeft);
-        UpdateFuel(inputThrustRight);
+        UpdateFuel(inputThrustLeft);
     }
 
     private void UpdateThrustersCombat()
