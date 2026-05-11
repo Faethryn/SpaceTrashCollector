@@ -1,4 +1,5 @@
 using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -27,6 +28,9 @@ public class Ship : MonoBehaviour
 
     [SerializeField]
     private float _fuelConsumptionPerThrust = 1f;
+
+    [SerializeField]
+    private TextMeshProUGUI _ModeText;
 
     [SerializeField]
     private AimingReticle _aimingReticle;
@@ -126,6 +130,11 @@ public class Ship : MonoBehaviour
 
     private void UpdateThrusters()
     {
+        if(_fuelManager.Fuel < 0)
+        {
+            return;
+        }
+
         switch (_movementMode)
         {
             case MovementMode.Mobility:
@@ -202,7 +211,14 @@ public class Ship : MonoBehaviour
 
     private void ShootUpdate()
     {
-        if (_shoot.ReadValue<float>() > 0.1f)
+        bool isShooting = (_shoot.ReadValue<float>() > 0.1f);
+
+        if (_movementMode == MovementMode.SingleThrust)
+        {
+            isShooting = (isShooting || (_thrustRight.ReadValue<float>() > 0.1f));
+        }
+
+        if (isShooting)
         {
             float timeSinceLastShot = Time.time - _lastShotTime;
             if (timeSinceLastShot >= _delayBetweenShots)
@@ -265,7 +281,7 @@ public class Ship : MonoBehaviour
         switch(_movementMode)
         {
             case MovementMode.Mobility:
-                _movementMode = MovementMode.Combat;
+                _movementMode = MovementMode.SingleThrust;
                 break;
             case MovementMode.Combat:
                 _movementMode = MovementMode.SingleThrust;
@@ -274,6 +290,8 @@ public class Ship : MonoBehaviour
                 _movementMode = MovementMode.Mobility;
                 break;
         }
+        _ModeText.text = _movementMode.ToString();
+
     }
 
     private enum PerspectiveState

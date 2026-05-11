@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2995050139182088375}
   - component: {fileID: 5733629277153038848}
   - component: {fileID: 3373747401422406145}
+  - component: {fileID: 4378562775230080523}
   m_Layer: 9
   m_Name: Asteroid_Medium_Medium
   m_TagString: Untagged
@@ -136,6 +137,7 @@ MonoBehaviour:
   _trashChunks: {fileID: 353849080949327854, guid: ff1051e3af7f0c74aab3c35eca4aa2a4, type: 3}
   _amountOfSpawnedChunks: 5
   _spawnRange: 5
+  _shaderChange: {fileID: 0}
 --- !u!64 &3373747401422406145
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -158,3 +160,25 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 1350605415201388534, guid: 78499d97230fe0748a3fc15499c77d48, type: 3}
+--- !u!114 &4378562775230080523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3044297923742949651}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f70eeb6b044be24f887aa13d8de02eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShaderValueChange
+  _target: {fileID: 3044297923742949651}
+  _changeType: 0
+  _propertyName: _EmissionColor
+  _materialIndex: 0
+  _floatStart: 0
+  _floatEnd: 0
+  _startColor: {r: 0, g: 0, b: 0, a: 1}
+  _endColor: {r: 8.574187, g: 0, b: 0, a: 1}
+  _startVector: {x: 0, y: 0, z: 0}
+  _endVector: {x: 0, y: 0, z: 0}

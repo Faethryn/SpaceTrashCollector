@@ -275,10 +275,11 @@ MonoBehaviour:
   _leftThruster: {fileID: 824414520468224514}
   _rightThruster: {fileID: 2273428594564948096}
   _fuelManager: {fileID: 5679384545630133055}
-  _fuelConsumptionPerThrust: 1
+  _fuelConsumptionPerThrust: 5
+  _ModeText: {fileID: 6252846832662104912}
   _aimingReticle: {fileID: 609921386916318571}
   _addedTorqueInCombat: 100
-  _delayBetweenShots: 1
+  _delayBetweenShots: 0.3
 --- !u!1001 &1272786657172019277
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -863,6 +864,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10fcddfb751e727419ee8230e7531d05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FuelManager
+--- !u!114 &6252846832662104912 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7160492226257717079, guid: 0b78eb9c98c376d40be5c9f4d6965596, type: 3}
+  m_PrefabInstance: {fileID: 3862327807242259463}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1001 &3969176759314551338
 PrefabInstance:
   m_ObjectHideFlags: 0

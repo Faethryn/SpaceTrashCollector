@@ -185,5 +185,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Laser
   _cylinderCollider: {fileID: 5174484299480977387}
-  _forwardSpeed: 50
+  _forwardSpeed: 100
   _lifeTime: 10

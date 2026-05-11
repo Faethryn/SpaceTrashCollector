@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Asteroid : MonoBehaviour
@@ -14,9 +15,18 @@ public class Asteroid : MonoBehaviour
     [SerializeField]
     private float _spawnRange = 5f;
 
+    [SerializeField]
+    ShaderValueChange _shaderChange;
+
+    private void Awake()
+    {
+        _shaderChange = this.GetComponent<ShaderValueChange>();
+    }
+
     public void RemoveHealth(int hitPoints)
     {
         _hitPoints -= hitPoints;
+        PlayHitColour();
 
         if(_hitPoints <= 0)
         {
@@ -38,5 +48,21 @@ public class Asteroid : MonoBehaviour
 
             Instantiate(_trashChunks, spawnPosition, Quaternion.identity );
         }
+    }
+
+    private void PlayHitColour()
+    {
+        _shaderChange.TweenChange(1, 0.1f);
+        StopAllCoroutines();
+        StartCoroutine(CoReturnDelayed());
+    }
+
+    private IEnumerator CoReturnDelayed()
+    {
+        yield return new WaitForSeconds(0.1f);
+
+        _shaderChange.TweenChange(0, 0.1f);
+
+        yield return null;
     }
 }

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4766520567212464181}
   - component: {fileID: 6328805634832017693}
   - component: {fileID: 9061698274875218590}
+  - component: {fileID: 1174769997751686280}
   m_Layer: 9
   m_Name: Asteroid_Small_Big
   m_TagString: Untagged
@@ -158,3 +159,26 @@ MonoBehaviour:
   _trashChunks: {fileID: 353849080949327854, guid: ff1051e3af7f0c74aab3c35eca4aa2a4, type: 3}
   _amountOfSpawnedChunks: 5
   _spawnRange: 5
+  _shaderChange: {fileID: 0}
+--- !u!114 &1174769997751686280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9204498037624989223}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f70eeb6b044be24f887aa13d8de02eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShaderValueChange
+  _target: {fileID: 9204498037624989223}
+  _changeType: 0
+  _propertyName: _EmissionColor
+  _materialIndex: 0
+  _floatStart: 0
+  _floatEnd: 0
+  _startColor: {r: 0, g: 0, b: 0, a: 1}
+  _endColor: {r: 8.574187, g: 0, b: 0, a: 1}
+  _startVector: {x: 0, y: 0, z: 0}
+  _endVector: {x: 0, y: 0, z: 0}

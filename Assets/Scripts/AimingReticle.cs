@@ -64,6 +64,10 @@ public class AimingReticle : MonoBehaviour
         {
             _endReticle.forward = endrecticleForward;
         }
+        else
+        {
+            _endReticle.forward = _spaceShip.transform.forward;
+        }
     }
 
     public void SpawnProjectile()
