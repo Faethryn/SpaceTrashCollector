@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8681739534925731949}
   - component: {fileID: 2044337898108357509}
   - component: {fileID: 445263671287460614}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ThrustAudio
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -193,7 +193,8 @@ GameObject:
   - component: {fileID: 5068963061388855405}
   - component: {fileID: 5208396022618033509}
   - component: {fileID: 3530339168939675793}
-  m_Layer: 0
+  - component: {fileID: 1735564743040303587}
+  m_Layer: 6
   m_Name: SpaceShip_Prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -223,7 +224,6 @@ Transform:
   - {fileID: 3968041620345663724}
   - {fileID: 2637882645569580650}
   - {fileID: 3716075392108369775}
-  - {fileID: 2786618981583242556}
   - {fileID: 1255101424494490220}
   - {fileID: 3292252272928998143}
   - {fileID: 2977998386217330036}
@@ -279,7 +279,66 @@ MonoBehaviour:
   _ModeText: {fileID: 6252846832662104912}
   _aimingReticle: {fileID: 609921386916318571}
   _addedTorqueInCombat: 100
+  _input: {fileID: 1735564743040303587}
   _delayBetweenShots: 0.3
+--- !u!114 &1735564743040303587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9147230217722785533}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.PlayerInput
+  m_Actions: {fileID: -944628639613478452, guid: 626f7613d5fa2d14a8b042149444d3a3, type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 8e1602cb-6272-46fa-b46d-6f2c6b3b77d7
+    m_ActionName: 'SpaceShip/ThrustRight[/Keyboard/rightCtrl]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 6963d247-9f62-473b-aa6a-ff62ec0a9c6c
+    m_ActionName: 'SpaceShip/ThrustLeft[/Keyboard/space]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 95f0006b-bc85-464b-923a-515921c6baaa
+    m_ActionName: 'SpaceShip/OrientLeft[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: be55a24a-b8d5-4722-9927-4d471f52dd65
+    m_ActionName: 'SpaceShip/OrientRight[/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: a9bf2674-8964-4e93-9c16-0548129f93b7
+    m_ActionName: 'SpaceShip/ChangePerspective[/Keyboard/rightShift]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 28518b02-117d-4f66-8d6e-adbdd8872d09
+    m_ActionName: SpaceShip/Shoot
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 603a7db3-9859-447d-9ec0-30ac93074468
+    m_ActionName: 'SpaceShip/MovementModeToggle[/Keyboard/b]'
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: SpaceShip
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 5353220188699720560}
 --- !u!1001 &1272786657172019277
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -362,10 +421,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7950831622494417558, guid: c7e4d2bcd7fa73b4a9adce88bbc0bfb9, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8336944082724097307, guid: c7e4d2bcd7fa73b4a9adce88bbc0bfb9, type: 3}
+      propertyPath: _ownCam
+      value: 
+      objectReference: {fileID: 5353220188699720560}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 3799491767174237057, guid: c7e4d2bcd7fa73b4a9adce88bbc0bfb9, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c7e4d2bcd7fa73b4a9adce88bbc0bfb9, type: 3}
@@ -436,6 +500,10 @@ PrefabInstance:
     - target: {fileID: 5127917235998039543, guid: d193c77b289fda343b5b10493828392f, type: 3}
       propertyPath: m_Name
       value: WingTrail_Right
+      objectReference: {fileID: 0}
+    - target: {fileID: 5127917235998039543, guid: d193c77b289fda343b5b10493828392f, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -595,13 +663,37 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5068963061388855405}
     m_Modifications:
+    - target: {fileID: 271453805057350081, guid: c7e4d2bcd7fa73b4a9adce88bbc0bfb9, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 271453805057350081, guid: c7e4d2bcd7fa73b4a9adce88bbc0bfb9, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -14.23
+      objectReference: {fileID: 0}
+    - target: {fileID: 1853001187698414600, guid: c7e4d2bcd7fa73b4a9adce88bbc0bfb9, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 2174554739987031939, guid: c7e4d2bcd7fa73b4a9adce88bbc0bfb9, type: 3}
       propertyPath: m_Name
       value: CameraSystems_BehindBack
       objectReference: {fileID: 0}
     - target: {fileID: 2174554739987031939, guid: c7e4d2bcd7fa73b4a9adce88bbc0bfb9, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2174554739987031939, guid: c7e4d2bcd7fa73b4a9adce88bbc0bfb9, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2256597212408247106, guid: c7e4d2bcd7fa73b4a9adce88bbc0bfb9, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3799491767174237057, guid: c7e4d2bcd7fa73b4a9adce88bbc0bfb9, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5151196791065540306, guid: c7e4d2bcd7fa73b4a9adce88bbc0bfb9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -642,6 +734,34 @@ PrefabInstance:
     - target: {fileID: 5151196791065540306, guid: c7e4d2bcd7fa73b4a9adce88bbc0bfb9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6241972276819349876, guid: c7e4d2bcd7fa73b4a9adce88bbc0bfb9, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 8.22
+      objectReference: {fileID: 0}
+    - target: {fileID: 6241972276819349876, guid: c7e4d2bcd7fa73b4a9adce88bbc0bfb9, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -44.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6288363497642843013, guid: c7e4d2bcd7fa73b4a9adce88bbc0bfb9, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7950831622494417558, guid: c7e4d2bcd7fa73b4a9adce88bbc0bfb9, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8336944082724097307, guid: c7e4d2bcd7fa73b4a9adce88bbc0bfb9, type: 3}
+      propertyPath: _ownCam
+      value: 
+      objectReference: {fileID: 5353220188699720560}
+    - target: {fileID: 8336944082724097307, guid: c7e4d2bcd7fa73b4a9adce88bbc0bfb9, type: 3}
+      propertyPath: _speedRange.x
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8336944082724097307, guid: c7e4d2bcd7fa73b4a9adce88bbc0bfb9, type: 3}
+      propertyPath: _speedRange.y
+      value: 25
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -843,6 +963,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI_Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 4288464653127071598, guid: 0b78eb9c98c376d40be5c9f4d6965596, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 6.3999023
+      objectReference: {fileID: 0}
+    - target: {fileID: 5445975433431926381, guid: 0b78eb9c98c376d40be5c9f4d6965596, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 5353220188699720560}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1198,6 +1326,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SpaceShipBody
       objectReference: {fileID: 0}
+    - target: {fileID: 1786194392251705814, guid: 0ad8d58729298914abd041f943ba611b, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1246,9 +1378,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5068963061388855405}
     m_Modifications:
+    - target: {fileID: 704741927189800335, guid: d1323798ee69ea543a130b5be9d9baab, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 5101394962932257544, guid: d1323798ee69ea543a130b5be9d9baab, type: 3}
       propertyPath: m_Name
       value: ThrusterPrefabLeft
+      objectReference: {fileID: 0}
+    - target: {fileID: 5101394962932257544, guid: d1323798ee69ea543a130b5be9d9baab, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5584493346526267826, guid: d1323798ee69ea543a130b5be9d9baab, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1290,6 +1430,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6957595676864647935, guid: d1323798ee69ea543a130b5be9d9baab, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 7177231720197069435, guid: d1323798ee69ea543a130b5be9d9baab, type: 3}
       propertyPath: _fuelManager
       value: 
@@ -1302,6 +1446,10 @@ PrefabInstance:
       propertyPath: _spaceShipBody
       value: 
       objectReference: {fileID: 5208396022618033509}
+    - target: {fileID: 8217808945468064546, guid: d1323798ee69ea543a130b5be9d9baab, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1322,68 +1470,6 @@ MonoBehaviour:
 Transform:
   m_CorrespondingSourceObject: {fileID: 5584493346526267826, guid: d1323798ee69ea543a130b5be9d9baab, type: 3}
   m_PrefabInstance: {fileID: 7559941349457109113}
-  m_PrefabAsset: {fileID: 0}
---- !u!1001 &7932637801688752737
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 5068963061388855405}
-    m_Modifications:
-    - target: {fileID: 1581713476542012945, guid: c6db017a0f454234a991305f07033c92, type: 3}
-      propertyPath: m_Name
-      value: Laser
-      objectReference: {fileID: 0}
-    - target: {fileID: 5240619031049742173, guid: c6db017a0f454234a991305f07033c92, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5240619031049742173, guid: c6db017a0f454234a991305f07033c92, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5240619031049742173, guid: c6db017a0f454234a991305f07033c92, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5240619031049742173, guid: c6db017a0f454234a991305f07033c92, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5240619031049742173, guid: c6db017a0f454234a991305f07033c92, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5240619031049742173, guid: c6db017a0f454234a991305f07033c92, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5240619031049742173, guid: c6db017a0f454234a991305f07033c92, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5240619031049742173, guid: c6db017a0f454234a991305f07033c92, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5240619031049742173, guid: c6db017a0f454234a991305f07033c92, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5240619031049742173, guid: c6db017a0f454234a991305f07033c92, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: c6db017a0f454234a991305f07033c92, type: 3}
---- !u!4 &2786618981583242556 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5240619031049742173, guid: c6db017a0f454234a991305f07033c92, type: 3}
-  m_PrefabInstance: {fileID: 7932637801688752737}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8787904231530228521
 PrefabInstance:
@@ -1437,6 +1523,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: WingTrail_Left
       objectReference: {fileID: 0}
+    - target: {fileID: 5127917235998039543, guid: d193c77b289fda343b5b10493828392f, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1455,9 +1545,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5068963061388855405}
     m_Modifications:
+    - target: {fileID: 704741927189800335, guid: d1323798ee69ea543a130b5be9d9baab, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 5101394962932257544, guid: d1323798ee69ea543a130b5be9d9baab, type: 3}
       propertyPath: m_Name
       value: ThrusterPrefabRight
+      objectReference: {fileID: 0}
+    - target: {fileID: 5101394962932257544, guid: d1323798ee69ea543a130b5be9d9baab, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5584493346526267826, guid: d1323798ee69ea543a130b5be9d9baab, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1499,6 +1597,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6957595676864647935, guid: d1323798ee69ea543a130b5be9d9baab, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 7177231720197069435, guid: d1323798ee69ea543a130b5be9d9baab, type: 3}
       propertyPath: _fuelManager
       value: 
@@ -1507,6 +1609,10 @@ PrefabInstance:
       propertyPath: _spaceShipBody
       value: 
       objectReference: {fileID: 5208396022618033509}
+    - target: {fileID: 8217808945468064546, guid: d1323798ee69ea543a130b5be9d9baab, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

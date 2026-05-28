@@ -1,7 +1,10 @@
 using System;
 using TMPro;
+using UnityEditor.VersionControl;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
+using static UnityEditor.Experimental.AssetDatabaseExperimental.AssetDatabaseCounters;
 
 public class Ship : MonoBehaviour
 {
@@ -38,7 +41,10 @@ public class Ship : MonoBehaviour
     [SerializeField]
     private float _addedTorqueInCombat = 100f;
 
-    private IASpaceShip _shipControls;
+    [SerializeField]
+    private PlayerInput _input;
+
+    private InputActionMap _spaceShipActionMap;
 
     private InputAction _thrustRight;
 
@@ -59,40 +65,94 @@ public class Ship : MonoBehaviour
 
     private float _lastShotTime = 0f;
 
+    private Camera _cam;
+
     private PerspectiveState _currentPerspective = PerspectiveState.Back;
 
     private MovementMode _movementMode = MovementMode.Mobility;
 
     private void Awake()
     {
-        _shipControls = new IASpaceShip();
+        _spaceShipActionMap = _input.actions.FindActionMap("SpaceShip", throwIfNotFound: true);
+
+        _thrustRight = _spaceShipActionMap.FindAction("ThrustRight", throwIfNotFound: true);
+        _thrustLeft = _spaceShipActionMap.FindAction("ThrustLeft", throwIfNotFound: true);
+        _orientLeft = _spaceShipActionMap.FindAction("OrientLeft", throwIfNotFound: true);
+        _orientRight = _spaceShipActionMap.FindAction("OrientRight", throwIfNotFound: true);
+        _perspectiveChange = _spaceShipActionMap.FindAction("ChangePerspective", throwIfNotFound: true);
+        _shoot = _spaceShipActionMap.FindAction("Shoot", throwIfNotFound: true);
+        _movementModeChange = _spaceShipActionMap.FindAction("MovementModeToggle", throwIfNotFound: true);
+        _cam = _input.camera;
+
+        PlayerCounter.Instance.PlayerJoined.AddListener(OnPlayerJoined);
+
+        if(PlayerCounter.Instance._players == 2)
+        {
+            int playerId = _input.playerIndex;
+
+            if(playerId == 0)
+            {
+                _cam.rect = new Rect(0, 0.5f, 1f, 1f);
+
+            }
+
+            if (playerId == 1)
+            {
+                _cam.rect = new Rect(0, 0, 1f, 0.5f);
+
+            }
+        }
 
         InitializeCamera();
     }
 
+    private void OnDestroy()
+    {
+        if(PlayerCounter.Instance == null)
+        {
+            return;
+        }
+
+        PlayerCounter.Instance.PlayerJoined.RemoveListener(OnPlayerJoined);
+
+    }
+
+    private void OnPlayerJoined()
+    {
+        if (PlayerCounter.Instance._players == 2)
+        {
+            int playerId = _input.playerIndex;
+
+            if (playerId == 0)
+            {
+                _cam.rect = new Rect(0, 0.5f, 1f, 1f);
+
+            }
+
+            if (playerId == 1)
+            {
+                _cam.rect = new Rect(0, 0, 1f, 0.5f);
+
+            }
+        }
+    }
+
     private void OnEnable()
     {
-        _perspectiveChange = _shipControls.SpaceShip.ChangePerspective;
         _perspectiveChange.Enable();
         _perspectiveChange.performed += OnPerspectiveChange;
-
-        _movementModeChange = _shipControls.SpaceShip.MovementModeToggle;
+        
         _movementModeChange.Enable();
         _movementModeChange.performed += OnMovementModeChange;
-
-        _thrustRight = _shipControls.SpaceShip.ThrustRight;
+        
         _thrustRight.Enable();
-
-        _thrustLeft = _shipControls.SpaceShip.ThrustLeft;
+        
         _thrustLeft.Enable();
-
-        _orientLeft = _shipControls.SpaceShip.OrientLeft;
+       
         _orientLeft.Enable();
-
-        _orientRight = _shipControls.SpaceShip.OrientRight;
+        
         _orientRight.Enable();
-
-        _shoot = _shipControls.SpaceShip.Shoot;
+        
         _shoot.Enable();
     }
 

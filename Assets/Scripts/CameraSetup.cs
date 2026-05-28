@@ -24,25 +24,18 @@ public class CameraSetup : MonoBehaviour
 
     private float _currentSpeed = 10.0f;
 
+    [SerializeField]
     private Camera _ownCam;
 
     private void OnEnable()
     {
-        if (_ownCam == null)
-        {
-            _ownCam = _cameraHolder.GetComponentInChildren<Camera>();
-        }
-        _ownCam.enabled = true;
+        _ownCam.transform.parent = _cameraHolder.transform;
+        _ownCam.transform.localPosition = Vector3.zero;
     }
 
     private void OnDisable()
     {
-        if (_ownCam == null)
-        {
-            _ownCam = _cameraHolder.GetComponentInChildren<Camera>();
-        }
-
-        _ownCam.enabled = false;
+        
     }
 
     private void FixedUpdate()
