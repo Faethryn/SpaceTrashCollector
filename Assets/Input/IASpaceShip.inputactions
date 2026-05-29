@@ -314,6 +314,34 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "StartMenu",
+            "id": "0f74bef2-ea77-4123-93a0-040721bfcb6c",
+            "actions": [
+                {
+                    "name": "StartGame",
+                    "type": "Button",
+                    "id": "17565efc-1eec-4bfa-91b0-cd81475aa36c",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "5e624255-b9f6-4a42-8234-a3c68c247909",
+                    "path": "<Gamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Controller",
+                    "action": "StartGame",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [

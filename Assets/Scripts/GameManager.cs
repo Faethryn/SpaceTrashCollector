@@ -93,9 +93,11 @@ public class GameManager : MonoBehaviour
         {
             case 0:
                 _player1 = ship.transform;
+                ship.transform.position = _shipSpawn1.position;
                 break;
             case 1:
                 _player2 = ship.transform;
+                ship.transform.position = _shipSpawn2.transform.position;
                 break;
 
         }
@@ -109,11 +111,11 @@ public class GameManager : MonoBehaviour
         _endScreenCam.gameObject.SetActive(true);
         switch (playerId)
         {
-            case 1:
+            case 0:
                 _player1WinText.text = _player1LossString;
                 _player2WinText.text = _player2WinString;
                 break;
-            case 0:
+            case 1:
                 _player1WinText.text = _player1WinString;
                 _player2WinText.text = _player2LossString;
                 break;
