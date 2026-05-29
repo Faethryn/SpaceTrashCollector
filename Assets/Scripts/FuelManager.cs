@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class FuelManager : MonoBehaviour
@@ -25,6 +26,11 @@ public class FuelManager : MonoBehaviour
     {
         _fuel -= thrustValue;
         UpdateFuelBar();
+
+        if (_fuel <= 0)
+        {
+            OnFuelEmpty?.Invoke();
+        }
     }
 
     public void RefillFuel(float fuelRefill)
@@ -36,4 +42,6 @@ public class FuelManager : MonoBehaviour
     {
         _fuelBar.fillAmount = _fuel / _maxFuel;
     }
+
+    public UnityEvent OnFuelEmpty;
 }

@@ -4,19 +4,20 @@ using UnityEditor.VersionControl;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
-using static UnityEditor.Experimental.AssetDatabaseExperimental.AssetDatabaseCounters;
 
 public class Ship : MonoBehaviour
 {
     [SerializeField]
     private Rigidbody _shipBody;
 
+    [Header("Cameras")]
     [SerializeField]
     private CameraSetup _cameraSetupCockpit;
 
     [SerializeField]
     private CameraSetup _cameraSetupBehind;
 
+    [Header("Thrusters")]
     [SerializeField]
     private ThrustSound _thrustSound;
 
@@ -43,6 +44,13 @@ public class Ship : MonoBehaviour
 
     [SerializeField]
     private PlayerInput _input;
+
+    [Header("HP")]
+    [SerializeField]
+    private SpaceShipHit _hitComponent;
+
+    [SerializeField]
+    private float _fuelLostPerHit = 50.0f;
 
     private InputActionMap _spaceShipActionMap;
 
@@ -71,6 +79,30 @@ public class Ship : MonoBehaviour
 
     private MovementMode _movementMode = MovementMode.Mobility;
 
+    [Header("Teams")]
+    [SerializeField]
+    private ShipPlayer _player = ShipPlayer.Blue;
+
+    [SerializeField]
+    private Material _redMaterial;
+
+    [SerializeField]
+    private Material _blueMaterial;
+
+    [SerializeField]
+    private MeshRenderer _renderer;
+
+    [SerializeField]
+    private TrailRenderer _trailRight;
+    [SerializeField]
+    private TrailRenderer _trailLeft;
+
+    [SerializeField]
+    private Gradient _trailGradientRed;
+
+    [SerializeField]
+    private Gradient _trailGradientBlue;
+
     private void Awake()
     {
         _spaceShipActionMap = _input.actions.FindActionMap("SpaceShip", throwIfNotFound: true);
@@ -86,22 +118,32 @@ public class Ship : MonoBehaviour
 
         PlayerCounter.Instance.PlayerJoined.AddListener(OnPlayerJoined);
 
-        if(PlayerCounter.Instance._players == 2)
+
+        int playerId = _input.playerIndex;
+
+        GameManager.Instance.PlayerHasJoined(playerId, this);
+
+        if (playerId == 0)
         {
-            int playerId = _input.playerIndex;
+            _cam.rect = new Rect(0, 0.5f, 1f, 1f);
+            _player = ShipPlayer.Red;
+            _renderer.material = _redMaterial;
+            _trailRight.colorGradient = _trailGradientRed;
+            _trailLeft.colorGradient = _trailGradientRed;
+            _aimingReticle.SetPlayer(_player);
 
-            if(playerId == 0)
-            {
-                _cam.rect = new Rect(0, 0.5f, 1f, 1f);
-
-            }
-
-            if (playerId == 1)
-            {
-                _cam.rect = new Rect(0, 0, 1f, 0.5f);
-
-            }
         }
+
+        if (playerId == 1)
+        {
+            _cam.rect = new Rect(0, 0, 1f, 0.5f);
+            _player = ShipPlayer.Blue;
+            _renderer.material = _blueMaterial;
+            _trailRight.colorGradient = _trailGradientBlue;
+            _trailLeft.colorGradient = _trailGradientBlue;
+            _aimingReticle.SetPlayer(_player);
+        }
+
 
         InitializeCamera();
     }
@@ -154,6 +196,11 @@ public class Ship : MonoBehaviour
         _orientRight.Enable();
         
         _shoot.Enable();
+
+        _hitComponent.ShipHasBeenHit.AddListener(OnSpaceShipHit);
+
+        _fuelManager.OnFuelEmpty.AddListener(OnFuelEmpty);
+
     }
 
     private void OnDisable()
@@ -174,6 +221,8 @@ public class Ship : MonoBehaviour
 
         _shoot.Disable();
 
+        _hitComponent.ShipHasBeenHit.RemoveListener(OnSpaceShipHit);
+        _fuelManager.OnFuelEmpty.RemoveListener(OnFuelEmpty);
     }
 
     private void Update()
@@ -207,6 +256,11 @@ public class Ship : MonoBehaviour
                 UpdateThrustersSingleThrust();
                 break;
         }
+    }
+
+    private void OnFuelEmpty()
+    {
+        GameManager.Instance.OnFuelEmpty(_input.playerIndex);
     }
 
     private void UpdateThrustersMobility()
@@ -289,6 +343,11 @@ public class Ship : MonoBehaviour
         }
     }
 
+    private void OnSpaceShipHit()
+    {
+        UpdateFuel(_fuelLostPerHit);
+    }
+
     private void InitializeCamera()
     {
         switch (_currentPerspective)
@@ -366,4 +425,10 @@ public class Ship : MonoBehaviour
         Combat,
         SingleThrust
     }
+}
+
+public enum ShipPlayer
+{
+    Red = 0,
+    Blue = 1
 }

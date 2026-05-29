@@ -110,7 +110,7 @@ MonoBehaviour:
   _trashChunks: {fileID: 353849080949327854, guid: ff1051e3af7f0c74aab3c35eca4aa2a4, type: 3}
   _amountOfSpawnedChunks: 5
   _spawnRange: 5
-  _shaderChange: {fileID: 0}
+  _shaderChange: {fileID: 5871114310959482288}
 --- !u!54 &6386135928036141143
 Rigidbody:
   m_ObjectHideFlags: 0

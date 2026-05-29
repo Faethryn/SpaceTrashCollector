@@ -39,6 +39,12 @@ public class Laser : MonoBehaviour
             asteroid.RemoveHealth(1);
             Destroy(this.gameObject);
         }
+
+        if (other.TryGetComponent<SpaceShipHit>(out var Ship))
+        {
+            Ship.HitShip();
+            Destroy(this.gameObject);
+        }
     }
 
     public void SetStartVelocity(float speed)
