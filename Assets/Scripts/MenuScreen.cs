@@ -84,7 +84,7 @@ public class MenuScreen : MonoBehaviour
         {
             _player1TextBox.text = _player1Connected;
             _player1TextBox.color = _connectedColor;
-            if(controllers.Count == 2)
+            if(controllers.Count >= 2)
             {
                 _player2TextBox.text = _player2Connected;
                 _player2TextBox.color = _connectedColor;
