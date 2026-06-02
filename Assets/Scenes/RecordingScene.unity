@@ -704,7 +704,8 @@ GameObject:
   m_Component:
   - component: {fileID: 952010732}
   - component: {fileID: 952010731}
-  - component: {fileID: 952010733}
+  - component: {fileID: 952010734}
+  - component: {fileID: 952010735}
   m_Layer: 0
   m_Name: InputManager
   m_TagString: Untagged
@@ -787,7 +788,7 @@ Transform:
   - {fileID: 2112326481}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &952010733
+--- !u!114 &952010734
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -796,19 +797,36 @@ MonoBehaviour:
   m_GameObject: {fileID: 952010730}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 299b77c0b38358243b000780e2de2109, type: 3}
+  m_Script: {fileID: 11500000, guid: d35d5308cbb1fcd479dbf0c516db2aa7, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GameManager
+  m_EditorClassIdentifier: Unity.InputSystem.Recorder::UnityEngine.InputSystem.InputRecorder
+  m_StartRecordingWhenEnabled: 0
+  m_RecordFrames: 1
+  m_ReplayOnNewDevices: 0
+  m_SimulateOriginalTimingOnReplay: 0
+  m_RecordStateEventsOnly: 0
+  m_CaptureMemoryDefaultSize: 2097152
+  m_CaptureMemoryMaxSize: 10485760
+  m_DevicePath: <Gamepad>
+  m_RecordButtonPath: <Keyboard>/p
+  m_PlayButtonPath: <Keyboard>/l
+  m_ChangeEvent:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &952010735
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 952010730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eed80be86fa004c478efeea4b83a4993, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RecordingManager
   _inputManager: {fileID: 952010731}
   _shipSpawn1: {fileID: 575330858}
-  _shipSpawn2: {fileID: 1678565876}
-  _endScreenCam: {fileID: 2112326482}
-  _player1WinText: {fileID: 136192296}
-  _player2WinText: {fileID: 937679343}
-  _player1WinString: Player 1 Wins!
-  _player2WinString: Player 2 Wins!
-  _player1LossString: Player 1 lost
-  _player2LossString: Player 2 lost
 --- !u!1 &969463821
 GameObject:
   m_ObjectHideFlags: 0
@@ -850,7 +868,6 @@ MonoBehaviour:
   _spawnCount: 2000
   _minimumScales: {x: 20, y: 20, z: 20}
   _maximumScales: {x: 100, y: 100, z: 100}
-  _startingseed: 10
 --- !u!4 &969463823
 Transform:
   m_ObjectHideFlags: 0

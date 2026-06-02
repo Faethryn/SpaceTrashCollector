@@ -22,6 +22,9 @@ public class AsteroidSpawner : MonoBehaviour
     [SerializeField]
     private Vector3 _maximumScales = new Vector3(10, 10, 10);
 
+    [SerializeField]
+    private int _startingseed = 10;
+
     private void Start()
     {
         SpawnAllAsteroids();
@@ -29,6 +32,7 @@ public class AsteroidSpawner : MonoBehaviour
 
     private void SpawnAllAsteroids()
     {
+        Random.InitState(_startingseed);
         for(int i = 0; i < _spawnCount; i++)
         {
             SpawnOneAsteroid();
