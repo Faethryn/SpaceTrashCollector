@@ -413,6 +413,15 @@ public partial class @IASpaceShip: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""CloseGame"",
+                    ""type"": ""Button"",
+                    ""id"": ""56428a47-be63-49e6-9061-50dc11ee42be"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -424,6 +433,39 @@ public partial class @IASpaceShip: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": "";Controller"",
                     ""action"": ""StartGame"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0e8fc200-9c6c-467b-89c5-39cfddc889d8"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard"",
+                    ""action"": ""StartGame"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8f915547-674c-45f7-990b-8626b9532e4c"",
+                    ""path"": ""<Gamepad>/select"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Controller"",
+                    ""action"": ""CloseGame"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""26bf48f1-acef-4a39-a797-06dfa21aa59b"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard"",
+                    ""action"": ""CloseGame"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -472,6 +514,7 @@ public partial class @IASpaceShip: IInputActionCollection2, IDisposable
         // StartMenu
         m_StartMenu = asset.FindActionMap("StartMenu", throwIfNotFound: true);
         m_StartMenu_StartGame = m_StartMenu.FindAction("StartGame", throwIfNotFound: true);
+        m_StartMenu_CloseGame = m_StartMenu.FindAction("CloseGame", throwIfNotFound: true);
     }
 
     ~@IASpaceShip()
@@ -716,6 +759,7 @@ public partial class @IASpaceShip: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_StartMenu;
     private List<IStartMenuActions> m_StartMenuActionsCallbackInterfaces = new List<IStartMenuActions>();
     private readonly InputAction m_StartMenu_StartGame;
+    private readonly InputAction m_StartMenu_CloseGame;
     /// <summary>
     /// Provides access to input actions defined in input action map "StartMenu".
     /// </summary>
@@ -731,6 +775,10 @@ public partial class @IASpaceShip: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "StartMenu/StartGame".
         /// </summary>
         public InputAction @StartGame => m_Wrapper.m_StartMenu_StartGame;
+        /// <summary>
+        /// Provides access to the underlying input action "StartMenu/CloseGame".
+        /// </summary>
+        public InputAction @CloseGame => m_Wrapper.m_StartMenu_CloseGame;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -760,6 +808,9 @@ public partial class @IASpaceShip: IInputActionCollection2, IDisposable
             @StartGame.started += instance.OnStartGame;
             @StartGame.performed += instance.OnStartGame;
             @StartGame.canceled += instance.OnStartGame;
+            @CloseGame.started += instance.OnCloseGame;
+            @CloseGame.performed += instance.OnCloseGame;
+            @CloseGame.canceled += instance.OnCloseGame;
         }
 
         /// <summary>
@@ -774,6 +825,9 @@ public partial class @IASpaceShip: IInputActionCollection2, IDisposable
             @StartGame.started -= instance.OnStartGame;
             @StartGame.performed -= instance.OnStartGame;
             @StartGame.canceled -= instance.OnStartGame;
+            @CloseGame.started -= instance.OnCloseGame;
+            @CloseGame.performed -= instance.OnCloseGame;
+            @CloseGame.canceled -= instance.OnCloseGame;
         }
 
         /// <summary>
@@ -904,5 +958,12 @@ public partial class @IASpaceShip: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnStartGame(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "CloseGame" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnCloseGame(InputAction.CallbackContext context);
     }
 }

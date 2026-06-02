@@ -42,6 +42,8 @@ public class MenuScreen : MonoBehaviour
 
     private InputAction _startGame;
 
+    private InputAction _stopGame;
+
     [SerializeField]
     private string _nextScene;
 
@@ -57,12 +59,19 @@ public class MenuScreen : MonoBehaviour
         _startGame = _inputActions.StartMenu.StartGame;
         _startGame.Enable();
         _startGame.performed += OnStartGame;
+
+        _stopGame = _inputActions.StartMenu.CloseGame;
+        _stopGame.Enable();
+        _stopGame.performed += OnStopGame;
     }
 
     private void OnDisable()
     {
         _startGame.Disable();
         _startGame.performed -= OnStartGame;
+
+        _stopGame.Disable();
+        _stopGame.performed -= OnStopGame;
     }
 
     private IEnumerator CoCheckControllers()
@@ -113,5 +122,11 @@ public class MenuScreen : MonoBehaviour
         }
         StopAllCoroutines();
         SceneManager.LoadScene(_nextScene);
+    }
+
+    private void OnStopGame(InputAction.CallbackContext context)
+    {
+        StopAllCoroutines();
+        Application.Quit();
     }
 }

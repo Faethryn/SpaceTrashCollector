@@ -1,6 +1,8 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(PlayerInputManager))]
 public class GameManager : MonoBehaviour
@@ -59,8 +61,20 @@ public class GameManager : MonoBehaviour
 
     const string _controlScheme = "Controller";
 
+    private IASpaceShip _inputs;
+
+    private InputAction _startGame;
+
+    private InputAction _stopGame;
+
+    [SerializeField]
+    private string _menuScene;
+
+    bool _gameOver = false;
+
     private void Awake()
     {
+        _inputs = new IASpaceShip();
         _inputManager = this.gameObject.GetComponent<PlayerInputManager>();
 
         InputDevice controller1 = Gamepad.all[0];
@@ -70,6 +84,28 @@ public class GameManager : MonoBehaviour
         _inputManager.JoinPlayer(0, 0, _controlScheme, controller1);
 
         _inputManager.JoinPlayer(1, 1, _controlScheme, controller2);
+
+        StartCoroutine(CoDelaySpawnLocation());
+    }
+
+    private void OnEnable()
+    {
+        _startGame = _inputs.StartMenu.StartGame;
+        _startGame.Enable();
+        _startGame.performed += OnStartGame;
+
+        _stopGame = _inputs.StartMenu.CloseGame;
+        _stopGame.Enable();
+        _stopGame.performed += OnStopGame;
+    }
+
+    private void OnDisable()
+    {
+        _startGame.Disable();
+        _startGame.performed -= OnStartGame;
+
+        _stopGame.Disable();
+        _stopGame.performed -= OnStopGame;
     }
 
     public Transform GetOpponent(int playerId)
@@ -93,11 +129,11 @@ public class GameManager : MonoBehaviour
         {
             case 0:
                 _player1 = ship.transform;
-                ship.transform.position = _shipSpawn1.position;
+                //ship.transform.position = _shipSpawn1.position;
                 break;
             case 1:
                 _player2 = ship.transform;
-                ship.transform.position = _shipSpawn2.transform.position;
+                //ship.transform.position = _shipSpawn2.transform.position;
                 break;
 
         }
@@ -107,6 +143,7 @@ public class GameManager : MonoBehaviour
     {
         _player1.gameObject.SetActive(false);
         _player2.gameObject.SetActive(false);
+        _gameOver = true;
 
         _endScreenCam.gameObject.SetActive(true);
         switch (playerId)
@@ -121,5 +158,33 @@ public class GameManager : MonoBehaviour
                 break;
 
         }
+    }
+
+    private void OnStartGame(InputAction.CallbackContext context)
+    {
+        if (!_gameOver)
+        {
+            return;
+        }
+        StopAllCoroutines();
+        SceneManager.LoadScene(_menuScene);
+    }
+
+    private void OnStopGame(InputAction.CallbackContext context)
+    {
+        StopAllCoroutines();
+        Application.Quit();
+    }
+
+    private IEnumerator CoDelaySpawnLocation()
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            yield return null;
+        }
+
+        yield return null;
+        _player1.transform.position = _shipSpawn1.position;
+        _player2.transform.position = _shipSpawn2.position;
     }
 }

@@ -402,6 +402,14 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 603a7db3-9859-447d-9ec0-30ac93074468
     m_ActionName: 'SpaceShip/MovementModeToggle[/Keyboard/b]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 17565efc-1eec-4bfa-91b0-cd81475aa36c
+    m_ActionName: 'StartMenu/StartGame[/SwitchProControllerHID/start,/XInputControllerWindows/start,/Keyboard/enter]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 56428a47-be63-49e6-9061-50dc11ee42be
+    m_ActionName: 'StartMenu/CloseGame[/SwitchProControllerHID/select,/XInputControllerWindows/select,/Keyboard/escape]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: SpaceShip
@@ -1311,6 +1319,10 @@ PrefabInstance:
       propertyPath: _spaceShip
       value: 
       objectReference: {fileID: 5208396022618033509}
+    - target: {fileID: 4019549618891004944, guid: ee02d2a5aec823d489c8348ee990c56d, type: 3}
+      propertyPath: _homingCircleRadius
+      value: 0.15
+      objectReference: {fileID: 0}
     - target: {fileID: 4331642942182350580, guid: ee02d2a5aec823d489c8348ee990c56d, type: 3}
       propertyPath: m_Camera
       value: 
