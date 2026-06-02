@@ -844,6 +844,10 @@ PrefabInstance:
       propertyPath: _speedRange.y
       value: 25
       objectReference: {fileID: 0}
+    - target: {fileID: 8741197273903146822, guid: c7e4d2bcd7fa73b4a9adce88bbc0bfb9, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1321,7 +1325,7 @@ PrefabInstance:
       objectReference: {fileID: 5208396022618033509}
     - target: {fileID: 4019549618891004944, guid: ee02d2a5aec823d489c8348ee990c56d, type: 3}
       propertyPath: _homingCircleRadius
-      value: 0.15
+      value: 0.08
       objectReference: {fileID: 0}
     - target: {fileID: 4331642942182350580, guid: ee02d2a5aec823d489c8348ee990c56d, type: 3}
       propertyPath: m_Camera

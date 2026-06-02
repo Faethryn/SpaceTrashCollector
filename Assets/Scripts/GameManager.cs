@@ -178,7 +178,7 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator CoDelaySpawnLocation()
     {
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < 10; i++)
         {
             yield return null;
         }

@@ -706,6 +706,7 @@ GameObject:
   - component: {fileID: 952010732}
   - component: {fileID: 952010731}
   - component: {fileID: 952010733}
+  - component: {fileID: 952010734}
   m_Layer: 0
   m_Name: InputManager
   m_TagString: Untagged
@@ -811,6 +812,14 @@ MonoBehaviour:
   _player1LossString: Player 1 lost
   _player2LossString: Player 2 lost
   _menuScene: MenuScene
+--- !u!81 &952010734
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 952010730}
+  m_Enabled: 0
 --- !u!1 &969463821
 GameObject:
   m_ObjectHideFlags: 0

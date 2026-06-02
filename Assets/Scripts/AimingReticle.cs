@@ -1,5 +1,6 @@
 
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
@@ -52,6 +53,8 @@ public class AimingReticle : MonoBehaviour
 
     [SerializeField]
     private Transform _laserOrigin;
+
+    public UnityEvent HasShotLaser;
 
     private void Start()
     {
@@ -190,7 +193,9 @@ public class AimingReticle : MonoBehaviour
                 break;
         }
 
-        if(_lockedOn)
+        HasShotLaser?.Invoke();
+
+        if (_lockedOn)
         {
             Vector3 lockedOnDirection = _opponent.position - _laserOrigin.position;
 
@@ -213,5 +218,6 @@ public class AimingReticle : MonoBehaviour
         {
             laser.SetStartVelocity(_spaceShip.linearVelocity.magnitude);
         }
+        
     }
 }

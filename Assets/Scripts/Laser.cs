@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Laser : MonoBehaviour
 {
@@ -15,6 +16,8 @@ public class Laser : MonoBehaviour
     private float _timeSpawned;
 
     private float _actualSpeed = 0.0f;
+
+    public UnityEvent OnImpact;
 
     private void Awake()
     {
@@ -37,12 +40,15 @@ public class Laser : MonoBehaviour
        if(other.TryGetComponent<Asteroid>(out var asteroid))
         {
             asteroid.RemoveHealth(1);
+            OnImpact?.Invoke();
             Destroy(this.gameObject);
         }
 
         if (other.TryGetComponent<SpaceShipHit>(out var Ship))
         {
             Ship.HitShip();
+            OnImpact?.Invoke();
+
             Destroy(this.gameObject);
         }
     }
